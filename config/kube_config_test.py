@@ -305,6 +305,11 @@ class TestConfigNode(BaseTestCase):
         self.expect_exception(lambda: self.node['key3']['not-exists-key'],
                               "Expected key not-exists-key in test_obj/key3")
 
+    def test_null_value(self):
+        cn = ConfigNode("null_test_obj", None)
+        self.expect_exception(lambda: cn['any_key'],
+                              "Expected key any_key in null_test_obj")
+
     def test_get_with_name_on_invalid_object(self):
         self.expect_exception(
             lambda: self.node['key2'].get_with_name('no-name'),

@@ -501,7 +501,7 @@ class ConfigNode(object):
 
     def safe_get(self, key):
         if (isinstance(self.value, list) and isinstance(key, int) or
-                key in self.value):
+                isinstance(self.value, dict) and key in self.value):
             return self.value[key]
 
     def __getitem__(self, key):
